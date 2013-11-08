@@ -26,7 +26,8 @@ class Game(cocos.layer.ColorLayer):
         self.batch = cocos.batch.BatchNode()
         self.enemies = [cocos.sprite.Sprite(resources.enemy)
                    for i in range(6)]
-        positions = ((250, 125), (550, 125), (300, 325), (500, 325),
+        positions = ((250, 125), (550, 125),
+                     (300, 325), (500, 325),
                      (150, 475), (650, 475))
         for num, enem in enumerate(self.enemies):
             enem.position = positions[num]

@@ -9,7 +9,7 @@ from cocos.actions import MoveBy
 from cocos.actions import Repeat
 from cocos.actions import Reverse
 from cocos.actions import RotateBy
-from cocos.scenes.transitions import FlipAngular3DTransition
+from cocos.actions import ShakyTiles3D
 from pyglet.window import key
 
 import cocos
@@ -140,8 +140,6 @@ class MainMenu(cocos.menu.Menu):
     def __init__(self):
         super( MainMenu, self).__init__('Catch your husband!')
 
-        self.select_sound = resources.menu_sound
-
         self.font_title['font_name'] = 'Edit Undo Line BRK'
         self.font_title['font_size'] = 52
         self.font_title['color'] = (240, 0, 220, 255)
@@ -161,8 +159,10 @@ class MainMenu(cocos.menu.Menu):
         game_layer = Game()
         game_scene = cocos.scene.Scene(game_layer)
 
-        cocos.director.director.push(
-            FlipAngular3DTransition(game_scene, 1))
+        cocos.director.director.push(game_scene)
+        game_scene.do(
+            Repeat(ShakyTiles3D(randrange=10, grid=(20, 20), duration=1))
+        )
 
     def on_options( self ):
         self.parent.switch_to(1)
@@ -174,8 +174,6 @@ class MainMenu(cocos.menu.Menu):
 class OptionsMenu(cocos.menu.Menu):
     def __init__(self):
         super( OptionsMenu, self).__init__('Catch your husband!')
-
-        self.select_sound = resources.menu_sound
 
         self.font_title['font_name'] = 'Edit Undo Line BRK'
         self.font_title['font_size'] = 52
@@ -248,4 +246,5 @@ if __name__ == '__main__':
     scene = cocos.scene.Scene()
     scene.add(cocos.layer.MultiplexLayer(MainMenu(), OptionsMenu()), z=1)
     scene.add(BackgroundLayer(), z=0)
+    scene.do(Repeat(ShakyTiles3D(randrange=2, grid=(12,12), duration=1)))
     cocos.director.director.run(scene)
