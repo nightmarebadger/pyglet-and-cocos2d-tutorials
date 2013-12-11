@@ -3,10 +3,12 @@ import resources
 
 game_window = pyglet.window.Window()
 
+
 @game_window.event
 def on_draw():
     game_window.clear()
     sprite.draw()
+
 
 def update(dt):
     pass

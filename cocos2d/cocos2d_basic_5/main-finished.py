@@ -20,6 +20,7 @@ import resources
 
 class Game(cocos.layer.ColorLayer):
     is_event_handler = True
+
     def __init__(self):
         super(Game, self).__init__(102, 102, 225, 255)
 
@@ -52,7 +53,7 @@ class Game(cocos.layer.ColorLayer):
 
         self.batch = cocos.batch.BatchNode()
         self.enemies = [cocos.sprite.Sprite(resources.enemy)
-                   for i in range(6)]
+                        for i in range(6)]
         positions = ((250, 125), (550, 125), (300, 325), (500, 325),
                      (150, 475), (650, 475))
         for num, enem in enumerate(self.enemies):
@@ -104,7 +105,6 @@ class Game(cocos.layer.ColorLayer):
 
         music_player.eos_action = 'loop'
 
-
     def on_exit(self):
         super(Game, self).on_exit()
 
@@ -138,7 +138,7 @@ class Game(cocos.layer.ColorLayer):
 class MainMenu(cocos.menu.Menu):
 
     def __init__(self):
-        super( MainMenu, self).__init__('Catch your husband!')
+        super(MainMenu, self).__init__('Catch your husband!')
 
         self.font_title['font_name'] = 'Edit Undo Line BRK'
         self.font_title['font_size'] = 52
@@ -162,7 +162,7 @@ class MainMenu(cocos.menu.Menu):
         cocos.director.director.push(
             FlipAngular3DTransition(game_scene, 1))
 
-    def on_options( self ):
+    def on_options(self):
         self.parent.switch_to(1)
 
     def on_quit(self):
@@ -171,7 +171,7 @@ class MainMenu(cocos.menu.Menu):
 
 class OptionsMenu(cocos.menu.Menu):
     def __init__(self):
-        super( OptionsMenu, self).__init__('Catch your husband!')
+        super(OptionsMenu, self).__init__('Catch your husband!')
 
         self.font_title['font_name'] = 'Edit Undo Line BRK'
         self.font_title['font_size'] = 52
@@ -191,14 +191,14 @@ class OptionsMenu(cocos.menu.Menu):
         items.append(cocos.menu.MenuItem('Back', self.on_quit))
         self.create_menu(items, cocos.menu.shake(), cocos.menu.shake_back())
 
-    def on_fullscreen( self ):
+    def on_fullscreen(self):
         cocos.director.director.window.set_fullscreen(
             not cocos.director.director.window.fullscreen)
 
-    def on_quit( self ):
-        self.parent.switch_to( 0 )
+    def on_quit(self):
+        self.parent.switch_to(0)
 
-    def on_show_fps( self, value ):
+    def on_show_fps(self, value):
         cocos.director.director.show_FPS = value
 
 

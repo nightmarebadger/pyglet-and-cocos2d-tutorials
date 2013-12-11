@@ -65,6 +65,7 @@ enemies_sprites.append(pyglet.sprite.Sprite(
 boss = pyglet.sprite.Sprite(resources.boss, x=400, y=550)
 boss.scale = 0.4
 
+
 @game_window.event
 def on_draw():
     game_window.clear()
